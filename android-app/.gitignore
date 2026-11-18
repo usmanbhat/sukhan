@@ -1,0 +1,12 @@
+local.properties
+ai.properties
+.fresh-build/
+dist/
+.gradle/
+.kotlin/
+.idea/
+**/build/
+*.apk
+*.aab
+*.jks
+*.keystore

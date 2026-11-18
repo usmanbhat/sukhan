@@ -1,0 +1,67 @@
+plugins {
+    id 'com.android.application'
+}
+
+dependencies {
+    implementation 'com.github.k2-fsa.sherpa-onnx:sherpa-onnx:v2.0.1'
+    implementation files('libs/piper-phonemize-1.5.9.aar')
+}
+
+def javaString = { String value ->
+    '"' + value.replace('\\', '\\\\').replace('"', '\\"').replace('\n', '\\n') + '"'
+}
+
+def aiProperties = new Properties()
+def aiPropertiesFile = rootProject.file('ai.properties')
+if (aiPropertiesFile.exists()) {
+    aiPropertiesFile.withInputStream { aiProperties.load(it) }
+}
+def aiEndpoint = (project.findProperty('sukhanAiEndpoint') ?: aiProperties.getProperty('endpoint', '')).toString()
+def aiApiKey = (project.findProperty('sukhanAiApiKey') ?: aiProperties.getProperty('apiKey', '')).toString()
+
+android {
+    namespace 'com.sukhan.poetry'
+    compileSdk 37
+    buildToolsVersion '37.0.0'
+
+    defaultConfig {
+        applicationId 'com.sukhan.poetry'
+        minSdk 23
+        targetSdk 37
+        versionCode 1
+        versionName '1.0-offline-demo'
+        buildConfigField 'String', 'SUKHAN_AI_ENDPOINT', javaString(aiEndpoint)
+        buildConfigField 'String', 'SUKHAN_AI_API_KEY', javaString(aiApiKey)
+        ndk { abiFilters 'arm64-v8a', 'armeabi-v7a' }
+    }
+
+    sourceSets {
+        main {
+            // Package only the app's two bundled poet packs and local assets.
+            // The full source corpus, compact sample DB, and optional packs stay outside the APK.
+            assets.srcDirs = ['src/main/iqbal-assets']
+        }
+    }
+
+    androidResources {
+        noCompress += ['onnx']
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+}

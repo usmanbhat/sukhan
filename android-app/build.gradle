@@ -1,0 +1,8 @@
+plugins {
+    id 'com.android.application' version '9.5.1' apply false
+}
+
+allprojects {
+    // Keep the explicitly preserved legacy JSON/build metadata untouched.
+    layout.buildDirectory = file("${rootDir}/.fresh-build/${project.name}")
+}

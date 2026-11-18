@@ -6,9 +6,13 @@ Use the [public manifest](https://raw.githubusercontent.com/usmanbhat/sukhan/mai
 
 ## What is inside
 
-The catalog covers **245 poets, 139,038 poems, and 3,145,024 verse rows** from the pinned Persian-language Ganjoor export. Each pack uses Sukhan’s app-facing SQLite schema, keeps poem-level source labels and the translation/gloss columns, and records the source revision. Opaque compressed `source_json_zlib` blobs are omitted to keep packs compact. Rumi and Saadi’s SQLite files are not in this repository because they ship in the app.
+The catalog covers **245 poets, 139,038 poems, and 3,145,024 verse rows** from the pinned Persian-language Ganjoor export. Each pack uses Sukhan’s app-facing SQLite schema, keeps poem-level source labels and the translation/gloss columns, and records the source revision. Opaque compressed `source_json_zlib` blobs are omitted to keep packs compact. Rumi and Saadi are not part of the root optional-download set; their app-bundled runtime copies are included under `android-app/app/src/main/iqbal-assets/assets/poet_packs/`.
 
 For poets other than Rumi, English/Urdu translation and hard-word glossary fields are empty and ready for reviewed, rights-cleared content. Rumi has 996 complete bilingual AI-draft poems (21,024 aligned lines in each language); they are marked not human-reviewed, and the exact model ID is unverified. Five complete Rumi poems without translation provenance are excluded from those draft translations.
+
+## Native Android app source
+
+The full native Kotlin Android project and its maintainer documentation are in [`android-app/`](android-app/README.md). That folder includes build setup, architecture, data/download behavior, current feature status, security/licensing notes, and the forward roadmap. The canonical optional poet-pack files and `manifest.json` remain at this repository root; the Android folder contains only the two app-bundled runtime packs and required app assets.
 
 ## Source notes
 

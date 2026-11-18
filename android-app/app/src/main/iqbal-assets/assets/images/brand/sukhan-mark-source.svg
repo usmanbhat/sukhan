@@ -1,0 +1,6 @@
+<!-- Static mark extracted from SokhanLogo.html; no script or remote resource is used. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="Sokhan mark">
+<circle cx="64" cy="64" r="60" fill="#14213D"></circle>
+<circle cx="64" cy="64" r="49" fill="none" stroke="#F7F5F0" stroke-width="2"></circle>
+<text x="64" y="80" text-anchor="middle" font-size="56" font-weight="700" fill="#F7F5F0" font-family="Aref Ruqaa">س</text>
+</svg>

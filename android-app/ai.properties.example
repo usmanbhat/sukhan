@@ -1,0 +1,4 @@
+# Optional later integration only; the offline demo sends no network requests.
+# Copy to ai.properties (ignored by .gitignore) and fill these when implementing a provider adapter.
+endpoint=
+apiKey=
